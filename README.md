@@ -14,3 +14,7 @@
 composer require mediarox/module-compatibility-amasty-checkout-iways-paypalplus
 bin/magento setup:upgrade
 ```
+
+#### Notice
+
+Further suggestions, corrections or features (pull requests or issues) are welcome.
