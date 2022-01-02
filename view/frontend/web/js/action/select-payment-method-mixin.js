@@ -38,7 +38,7 @@ define([
             let classPaymentMethods = 'payment-methods';
             let classActionsToolbar = 'actions-toolbar';
             let classMoved = 'moved';
-            let classAmasty = 'amasty'
+            let classAmasty = 'amasty';
 
             // ####### helper methods
             let isNativePPPMethod = function (paymentMethodCode) {
@@ -49,6 +49,9 @@ define([
             };
             let markAsAmastyButton = function (element) {
                 element.addClass(classAmasty);
+            };
+            let hideParentContainer = function (element) {
+                element.parent().hide();
             };
             let isPPPButtonAlreadyMoved = function () {
                 return payPalPlusOrderButton.hasClass(classMoved);
@@ -71,6 +74,7 @@ define([
                 ) {
                     markAsMoved(payPalPlusOrderButton);
                     markAsAmastyButton(payPalPlusOrderButton); // support native styling's
+                    hideParentContainer(payPalPlusOrderButton); // prevents native margin & padding of the soon empty parent container
 
                     // move into new structure <div class="payment-methods"><div class="actions-toolbar">PPP-BUTTON</div></div>
                     let newPaymentMethodsDiv = createDiv(classPaymentMethods);
