@@ -102,7 +102,7 @@ class ApiConfigProvider implements ApiConfigProviderInterface
         ] : [];
     }
 
-    protected function getCountry(CartInterface $quote)
+    protected function getCountry(Quote $quote)
     {
         $billingAddress = $quote->getBillingAddress();
         if ($billingAddress->getCountryId()) {
@@ -117,7 +117,7 @@ class ApiConfigProvider implements ApiConfigProviderInterface
         return $this->scopeConfig->getValue('paypal/general/merchant_country', ScopeInterface::SCOPE_STORE);
     }
 
-    protected function getThirdPartyMethods(CartInterface $quote)
+    protected function getThirdPartyMethods(Quote $quote)
     {
         $this->methodList->setCheckPPP(true);
         $paymentMethods = $this->methodList->getAvailableMethods($quote);
