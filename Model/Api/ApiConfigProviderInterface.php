@@ -12,5 +12,5 @@ namespace Compatibility\AmastyCheckoutIwaysPayPalPlus\Model\Api;
  */
 interface ApiConfigProviderInterface
 {
-    public function getConfig(\Magento\Quote\Api\Data\CartInterface $quote): array;
+    public function getConfig(\Magento\Quote\Model\Quote $quote): array;
 }
