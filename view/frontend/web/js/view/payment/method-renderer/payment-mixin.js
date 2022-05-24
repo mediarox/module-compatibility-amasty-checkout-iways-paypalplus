@@ -7,13 +7,15 @@ define(
         'jquery',
         'Amasty_Checkout/js/model/payment/payment-loading',
         'Amasty_Checkout/js/model/address-form-state',
-        'Magento_Checkout/js/model/shipping-service'
+        'Magento_Checkout/js/model/shipping-service',
+        'Amasty_Checkout/js/model/events'
     ],
     function (
         $,
         paymentLoader,
         addressFormState,
-        shippingService
+        shippingService,
+        events
     ) {
     'use strict';
     
@@ -89,6 +91,23 @@ define(
                 && !addressFormState.isBillingFormVisible()
                 && !addressFormState.isShippingFormVisible()
                 && !shippingService.isLoading();
+        },
+        /**
+         * Reload paypal plus behavior for one step checkout.
+         */
+        initObservable: function () {
+            var self = this;
+
+            this._super();
+
+            events.onAfterShippingSave(_.debounce(function () {
+                self.reInitPayPalPlus();
+            }, 50));
+
+            return this;
+        },
+        reInitPayPalPlus: function () {
+            //this.thirdPartyPaymentMethods = webapiCall; 
         }
     };
 
