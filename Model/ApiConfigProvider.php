@@ -21,6 +21,7 @@ namespace Compatibility\AmastyCheckoutIwaysPayPalPlus\Model;
 use Compatibility\AmastyCheckoutIwaysPayPalPlus\Model\Api\ApiConfigProviderInterface;
 use Iways\PayPalPlus\Helper\Data as PayPalPlusHelper;
 use Iways\PayPalPlus\Model\MethodList;
+use Iways\PayPalPlus\Model\Payment;
 use Magento\Checkout\Model\ConfigProviderInterface;
 use Magento\Framework\App\Config\ScopeConfigInterface;
 use Magento\Framework\UrlInterface;
