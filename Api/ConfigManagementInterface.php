@@ -16,8 +16,7 @@ interface ConfigManagementInterface
      * Lists available third party payment methods for a specified shopping cart.
      *
      * This call returns an array of objects, but detailed information about each object’s attributes might not be
-     * included.  See https://devdocs.magento.com/codelinks/attributes.html#PaymentMethodManagementInterface to
-     * determine which call to use to get detailed information about all attributes for an object.
+     * included.
      *
      * @param int $cartId The cart ID.
      * @return array Array of third party payment methods.
