@@ -28,6 +28,7 @@ define(
         errorProcessor
     ) {
     'use strict';
+    var paypalplusConfig = window.checkoutConfig.payment.iways_paypalplus_payment;
     var mixin = {
         
         /**
@@ -151,8 +152,8 @@ define(
             return resourceUrlManager.getUrl(urls, params);
         },
         refreshPppConfig: function (response) {
-            let newPaypalplusConfig = response.iways_paypalplus_payment;
-           this.thirdPartyPaymentMethods = newPaypalplusConfig ? newPaypalplusConfig.thirdPartyPaymentMethods: [];
+            let paypalplusConfig = response[0].iways_paypalplus_payment;
+            this.initVars();
             try {
                 if (this.canInitialise() && this.isInitialized) {
                     this.isInitialized = false;
