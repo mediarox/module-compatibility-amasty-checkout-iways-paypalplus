@@ -148,7 +148,7 @@ define(
                     'customer': '/carts/mine/ppp-config'
                 };
 
-            return this.getUrl(urls, params);
+            return resourceUrlManager.getUrl(urls, params);
         },
         refreshPppConfig: function (response) {
             paypalplusConfig = response.iways_paypalplus_payment;
