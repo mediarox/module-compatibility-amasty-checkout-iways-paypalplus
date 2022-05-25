@@ -8,18 +8,29 @@ define(
         'Amasty_Checkout/js/model/payment/payment-loading',
         'Amasty_Checkout/js/model/address-form-state',
         'Magento_Checkout/js/model/shipping-service',
-        'Amasty_Checkout/js/model/events'
+        'Amasty_Checkout/js/model/events',
+        'mage/storage',
+        'Magento_Checkout/js/model/full-screen-loader',
+        'Magento_Checkout/js/model/resource-url-manager',
+        'Magento_Checkout/js/model/quote',
+        'Magento_Checkout/js/model/error-processor',
     ],
     function (
         $,
         paymentLoader,
         addressFormState,
         shippingService,
-        events
+        events,
+        storage,
+        fullScreenLoader,
+        resourceUrlManager,
+        quote,
+        errorProcessor
     ) {
     'use strict';
-    
+    var paypalplusConfig = window.checkoutConfig.payment.iways_paypalplus_payment;
     var mixin = {
+        
         /**
          * Extend enableContinue.
          */
@@ -106,8 +117,50 @@ define(
 
             return this;
         },
+        /**
+         * Load new ppp config from web api and re-init (refresh) ppp iframe.
+         */
         reInitPayPalPlus: function () {
-            //this.thirdPartyPaymentMethods = webapiCall; 
+            fullScreenLoader.startLoader();
+            storage.get(this.getUrlForPppConfig()).done(
+                function (response) {
+                    this.refreshPppConfig(response);
+                    fullScreenLoader.stopLoader();
+                }
+            ).fail(
+                function (response) {
+                    errorProcessor.process(response);
+                    fullScreenLoader.stopLoader();
+                }
+            );
+        },
+        /**
+         * Get ppp config web api url.
+         * @return {*}
+         */
+        getUrlForPppConfig: function () {
+            var params = resourceUrlManager.getCheckoutMethod() == 'guest' ? //eslint-disable-line eqeqeq
+                    {
+                        cartId: quote.getQuoteId()
+                    } : {},
+                urls = {
+                    'guest': '/guest-carts/:cartId/ppp-config',
+                    'customer': '/carts/mine/ppp-config'
+                };
+
+            return this.getUrl(urls, params);
+        },
+        refreshPppConfig: function (response) {
+            paypalplusConfig = response.iways_paypalplus_payment;
+            this.initVars();
+            try {
+                if (this.canInitialise() && this.isInitialized) {
+                    this.isInitialized = false;
+                    this.initPayPalPlusFrame();
+                }
+            } catch (e) {
+                console.log(e);
+            }
         }
     };
 
