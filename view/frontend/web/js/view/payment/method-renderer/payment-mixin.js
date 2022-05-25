@@ -152,7 +152,7 @@ define(
             return resourceUrlManager.getUrl(urls, params);
         },
         refreshPppConfig: function (response) {
-            let paypalplusConfig = response[0].iways_paypalplus_payment;
+            paypalplusConfig = response[0].iways_paypalplus_payment;
             this.initVars();
             try {
                 if (this.canInitialise() && this.isInitialized) {
