@@ -14,6 +14,7 @@ define(
         'Magento_Checkout/js/model/resource-url-manager',
         'Magento_Checkout/js/model/quote',
         'Magento_Checkout/js/model/error-processor',
+        'Magento_Checkout/js/action/get-totals'
     ],
     function (
         $,
@@ -25,7 +26,8 @@ define(
         fullScreenLoader,
         resourceUrlManager,
         quote,
-        errorProcessor
+        errorProcessor,
+        getTotals
     ) {
     'use strict';
     var mixin = {
@@ -157,6 +159,7 @@ define(
                 if (this.canInitialise() && this.isInitialized) {
                     this.isInitialized = false;
                     this.initPayPalPlusFrame();
+                    getTotals([]);
                 }
             } catch (e) {
                 console.log(e);
