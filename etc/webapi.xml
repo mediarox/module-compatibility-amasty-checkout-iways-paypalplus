@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Copyright 2022 (c) mediarox UG (haftungsbeschraenkt) (http://www.mediarox.de)
+ * See LICENSE for license details.
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    
+    <route url="/V1/carts/:cartId/ppp-config" method="GET">
+        <service class="Compatibility\AmastyCheckoutIwaysPayPalPlus\Api\ConfigManagementInterface" method="get"/>
+        <resources>
+            <resource ref="Magento_Cart::manage" />
+        </resources>
+    </route>
+    
+    <route url="/V1/guest-carts/:cartId/ppp-config" method="GET">
+        <service class="Compatibility\AmastyCheckoutIwaysPayPalPlus\Api\GuestConfigManagementInterface" method="get"/>
+        <resources>
+            <resource ref="anonymous" />
+        </resources>
+    </route>
+    
+</routes>
