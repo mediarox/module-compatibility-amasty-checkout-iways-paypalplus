@@ -188,14 +188,7 @@ define(
              * Derived from initVars.
              */
             reInitVars: function (config) {
-                this.paymentExperience = config.paymentExperience ?? '';
-                this.mode = config.mode ?? '';
-                this.country = config.country ?? '';
-                this.language = config.language ?? '';
-                this.showPuiOnSandbox = config.showPuiOnSandbox ?? '';
-                this.showLoadingIndicator = config.showLoadingIndicator ?? '';
                 this.thirdPartyPaymentMethods = config.thirdPartyPaymentMethods ?? [];
-                this.paymentCodeMappings = {};
             },
             isNativePPPMethod: function (paymentMethodCode) {
                 return paymentMethodCode === this.payPalPlusMethodCode;
