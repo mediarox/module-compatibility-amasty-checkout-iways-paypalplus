@@ -186,9 +186,13 @@ define(
             /**
              * Reset all provided configuration values.
              * Derived from initVars.
+             * 
+             * Note: Testing to set all configuration values resulted in 
+             * the third-party payment methods not being updated.
              */
             reInitVars: function (config) {
                 this.thirdPartyPaymentMethods = config.thirdPartyPaymentMethods ?? [];
+                // toDo
             },
             isNativePPPMethod: function (paymentMethodCode) {
                 return paymentMethodCode === this.payPalPlusMethodCode;
