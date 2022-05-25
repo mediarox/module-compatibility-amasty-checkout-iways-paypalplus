@@ -122,9 +122,10 @@ define(
          */
         reInitPayPalPlus: function () {
             fullScreenLoader.startLoader();
+            self = this;
             storage.get(this.getUrlForPppConfig()).done(
                 function (response) {
-                    this.refreshPppConfig(response);
+                    self.refreshPppConfig(response);
                     fullScreenLoader.stopLoader();
                 }
             ).fail(
