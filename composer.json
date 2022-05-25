@@ -2,7 +2,7 @@
   "name": "mediarox/module-compatibility-amasty-checkout-iways-paypalplus",
   "description": "Compatibility module for the modules iways/module-pay-pal-plus & amasty/module-single-step-checkout.",
   "type": "magento2-module",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "license": [
     "MIT"
   ],
